@@ -57,6 +57,11 @@
     <Compile Include="IDao.cs" />
     <Compile Include="IDaoProducto.cs" />
     <Compile Include="MF0968Context.cs" />
+    <Compile Include="Migrations\202110270806468_ProductoMigration.cs" />
+    <Compile Include="Migrations\202110270806468_ProductoMigration.designer.cs">
+      <DependentUpon>202110270806468_ProductoMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +73,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202110270806468_ProductoMigration.resx">
+      <DependentUpon>202110270806468_ProductoMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
