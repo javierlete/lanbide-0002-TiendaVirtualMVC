@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,10 @@ namespace Entidades
         public long? Id { get; set; }
         public string Nombre { get; set; }
         public decimal Precio { get; set; }
+        
+        [DataType(DataType.Date)]
+        [Column(TypeName = "Date")]
+        public DateTime? FechaCaducidad { get; set; }
 
         public override bool Equals(object obj)
         {
@@ -24,21 +29,23 @@ namespace Entidades
             return other != null &&
                    Id == other.Id &&
                    Nombre == other.Nombre &&
-                   Precio == other.Precio;
+                   Precio == other.Precio &&
+                   FechaCaducidad == other.FechaCaducidad;
         }
 
         public override int GetHashCode()
         {
-            int hashCode = -675047433;
+            int hashCode = -1261291979;
             hashCode = hashCode * -1521134295 + Id.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Nombre);
             hashCode = hashCode * -1521134295 + Precio.GetHashCode();
+            hashCode = hashCode * -1521134295 + FechaCaducidad.GetHashCode();
             return hashCode;
         }
 
         public override string ToString()
         {
-            return $"{Id}, {Nombre}, {Precio}";
+            return $"{Id}, {Nombre}, {Precio}, {FechaCaducidad}";
         }
 
         public static bool operator ==(Producto left, Producto right)

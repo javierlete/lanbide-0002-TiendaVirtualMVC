@@ -61,6 +61,10 @@
     <Compile Include="Migrations\202110270806468_ProductoMigration.designer.cs">
       <DependentUpon>202110270806468_ProductoMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110270831071_ProductoFechaCaducidadMigration.cs" />
+    <Compile Include="Migrations\202110270831071_ProductoFechaCaducidadMigration.designer.cs">
+      <DependentUpon>202110270831071_ProductoFechaCaducidadMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -77,6 +81,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202110270806468_ProductoMigration.resx">
       <DependentUpon>202110270806468_ProductoMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110270831071_ProductoFechaCaducidadMigration.resx">
+      <DependentUpon>202110270831071_ProductoFechaCaducidadMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

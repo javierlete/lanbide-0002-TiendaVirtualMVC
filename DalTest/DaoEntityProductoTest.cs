@@ -11,6 +11,9 @@ namespace Dal
     public class DaoEntityProductoTest
     {
         private static readonly IDaoProducto dao = new DaoEntityProducto();
+        private static readonly Producto producto1 = new Producto() { Id = 1L, Nombre = "Monitor", Precio = 123.45m };
+        private static readonly Producto producto2 = new Producto() { Id = 2L, Nombre = "Patatas", Precio = 12.34m, FechaCaducidad = new DateTime(2000, 1, 2) };
+        private static readonly List<Producto> productos = new List<Producto>() { producto1, producto2 };
 
         private DbConnection ObtenerConexion()
         {
@@ -30,11 +33,40 @@ namespace Dal
                 com.CommandText = "TRUNCATE TABLE Productos";
                 com.ExecuteNonQuery();
 
-                com.CommandText = "INSERT INTO Productos (Nombre, Precio) VALUES ('Monitor', 123.45)";
-                com.ExecuteNonQuery();
+                com.CommandText = "INSERT INTO Productos (Nombre, Precio, FechaCaducidad) VALUES (@Nombre, @Precio, @FechaCaducidad)";
 
-                com.CommandText = "INSERT INTO Productos (Nombre, Precio) VALUES ('Ratón', 12.34)";
-                com.ExecuteNonQuery();
+                DbParameter parNombre = com.CreateParameter();
+                parNombre.ParameterName = "Nombre";
+                parNombre.DbType = System.Data.DbType.String;
+                com.Parameters.Add(parNombre);
+
+                DbParameter parPrecio = com.CreateParameter();
+                parPrecio.ParameterName = "Precio";
+                parPrecio.DbType = System.Data.DbType.Decimal;
+                com.Parameters.Add(parPrecio);
+
+                DbParameter parFechaCaducidad = com.CreateParameter();
+                parFechaCaducidad.ParameterName = "FechaCaducidad";
+                parFechaCaducidad.DbType = System.Data.DbType.Date;
+                com.Parameters.Add(parFechaCaducidad);
+
+                foreach (Producto producto in productos)
+                {
+                    parNombre.Value = producto.Nombre;
+                    parPrecio.Value = producto.Precio;
+                    
+                    if (producto.FechaCaducidad.HasValue)
+                    {
+                        parFechaCaducidad.Value = producto.FechaCaducidad;
+                    }
+                    else
+                    {
+                        parFechaCaducidad.Value = DBNull.Value;
+                    }
+
+                    com.ExecuteNonQuery();
+                }
+                
             }
         }
 
@@ -61,8 +93,8 @@ namespace Dal
 
             Assert.AreEqual(2, productos.Count);
 
-            Assert.AreEqual(new Producto() { Id = 1L, Nombre = "Monitor", Precio = 123.45m }, productos[0]);
-            Assert.AreEqual(new Producto() { Id = 2L, Nombre = "Ratón", Precio = 12.34m }, productos[1]);
+            Assert.AreEqual(producto1, productos[0]);
+            Assert.AreEqual(producto2, productos[1]);
         }
 
         [TestMethod]
@@ -72,11 +104,17 @@ namespace Dal
 
             Assert.IsNotNull(producto);
 
-            Assert.AreEqual(new Producto() { Id = 1L, Nombre = "Monitor", Precio = 123.45m }, producto);
+            Assert.AreEqual(producto1, producto);
 
             producto = dao.ObtenerPorId(10L);
 
             Assert.IsNull(producto);
+
+            producto = dao.ObtenerPorId(2L);
+
+            Assert.IsNotNull(producto);
+
+            Assert.AreEqual(producto2, producto);
         }
 
         [TestMethod]
@@ -87,7 +125,7 @@ namespace Dal
 
             Assert.AreEqual(3L, nuevo.Id);
 
-            using(DbConnection con = ObtenerConexion())
+            using (DbConnection con = ObtenerConexion())
             {
                 con.Open();
 
@@ -130,7 +168,7 @@ namespace Dal
         {
             dao.Borrar(1L);
 
-            using(DbConnection con = ObtenerConexion())
+            using (DbConnection con = ObtenerConexion())
             {
                 con.Open();
 
