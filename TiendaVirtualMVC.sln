@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bll", "Bll\Bll.csproj", "{6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BllTest", "BllTest\BllTest.csproj", "{AAA7C903-F76A-4BE8-8823-47B0D7B70EB7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTiendaVirtual", "WebApiTiendaVirtual\WebApiTiendaVirtual.csproj", "{61739AFA-6798-4EA7-9EBC-2928CAF7BFF4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{AAA7C903-F76A-4BE8-8823-47B0D7B70EB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAA7C903-F76A-4BE8-8823-47B0D7B70EB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAA7C903-F76A-4BE8-8823-47B0D7B70EB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61739AFA-6798-4EA7-9EBC-2928CAF7BFF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61739AFA-6798-4EA7-9EBC-2928CAF7BFF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61739AFA-6798-4EA7-9EBC-2928CAF7BFF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61739AFA-6798-4EA7-9EBC-2928CAF7BFF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
