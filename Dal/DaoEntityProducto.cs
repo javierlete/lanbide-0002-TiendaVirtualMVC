@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dal
 {
-    public class DaoEntityProducto : IDaoProducto
+    internal class DaoEntityProducto : IDaoProducto
     {
         public void Borrar(long id)
         {

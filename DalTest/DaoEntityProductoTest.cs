@@ -10,7 +10,7 @@ namespace Dal
     [TestClass]
     public class DaoEntityProductoTest
     {
-        private static readonly IDaoProducto dao = new DaoEntityProducto();
+        private static readonly IDaoProducto dao = FabricaDaos.ObtenerDaoProducto(Tipos.Entity);
         private static readonly Producto producto1 = new Producto() { Id = 1L, Nombre = "Monitor", Precio = 123.45m };
         private static readonly Producto producto2 = new Producto() { Id = 2L, Nombre = "Patatas", Precio = 12.34m, FechaCaducidad = new DateTime(2000, 1, 2) };
         private static readonly List<Producto> productos = new List<Producto>() { producto1, producto2 };
