@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlWebForms", "PlWebForms\Pl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlMvc", "PlMvc\PlMvc.csproj", "{2A79847E-2117-43DE-9DCA-D2442942B2E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlWebMvcCore", "PlWebMvcCore\PlWebMvcCore.csproj", "{55B8E45B-ADAA-46B0-81F5-559EF4BAA5CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{2A79847E-2117-43DE-9DCA-D2442942B2E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A79847E-2117-43DE-9DCA-D2442942B2E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A79847E-2117-43DE-9DCA-D2442942B2E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55B8E45B-ADAA-46B0-81F5-559EF4BAA5CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55B8E45B-ADAA-46B0-81F5-559EF4BAA5CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55B8E45B-ADAA-46B0-81F5-559EF4BAA5CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55B8E45B-ADAA-46B0-81F5-559EF4BAA5CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
