@@ -14,7 +14,7 @@ namespace Dal
         // Si desea tener como destino una base de datos y/o un proveedor de base de datos diferente, 
         // modifique la cadena de conexión 'MF0968Context'  en el archivo de configuración de la aplicación.
         public MF0968Context()
-            : base("name=MF0968Context")
+            : base(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=MF0968Test;Integrated Security=True;Pooling=False")
         {
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
