@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTiendaVirtual", "WebA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlConsola", "PlConsola\PlConsola.csproj", "{7549728E-2E04-4016-8D39-06180322BC6F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlWebForms", "PlWebForms\PlWebForms.csproj", "{B9FC83D1-B7E2-435A-B1D8-3CACDD7AA420}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{7549728E-2E04-4016-8D39-06180322BC6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7549728E-2E04-4016-8D39-06180322BC6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7549728E-2E04-4016-8D39-06180322BC6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9FC83D1-B7E2-435A-B1D8-3CACDD7AA420}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9FC83D1-B7E2-435A-B1D8-3CACDD7AA420}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9FC83D1-B7E2-435A-B1D8-3CACDD7AA420}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9FC83D1-B7E2-435A-B1D8-3CACDD7AA420}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
