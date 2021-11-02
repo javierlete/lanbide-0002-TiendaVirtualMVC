@@ -13,6 +13,7 @@ namespace Entidades
     {
         public long? Id { get; set; }
         public string Nombre { get; set; }
+        [Required]
         public decimal Precio { get; set; }
         
         [DataType(DataType.Date)]

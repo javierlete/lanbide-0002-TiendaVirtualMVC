@@ -7,10 +7,10 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Producto</h4>
         <hr />
@@ -51,6 +51,18 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/cldr.js"></script>
+<script src="~/Scripts/cldr/event.js"></script>
+<script src="~/Scripts/cldr/supplemental.js"></script>
+<script src="~/Scripts/cldr/unresolved.js"></script>
+<script src="~/Scripts/globalize.js"></script>
+<script src="~/Scripts/globalize/currency.js"></script>
+<script src="~/Scripts/globalize/date.js"></script>
+<script src="~/Scripts/globalize/message.js"></script>
+<script src="~/Scripts/globalize/number.js"></script>
+<script src="~/Scripts/globalize/plural.js"></script>
+<script src="~/Scripts/globalize/relative-time.js"></script>
+<script src="~/Scripts/globalize/unit.js"></script>
