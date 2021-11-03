@@ -12,8 +12,10 @@ namespace Entidades
     public class Producto : IEquatable<Producto>
     {
         public long? Id { get; set; }
+        [Required]
         public string Nombre { get; set; }
         [Required]
+        [RegularExpression(@"(\d+,?\d*)", ErrorMessage = "El número debe ser sólo dígitos con o sin decimales con coma")]
         public decimal Precio { get; set; }
         
         [DataType(DataType.Date)]
