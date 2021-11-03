@@ -20,6 +20,7 @@ namespace Entidades
 
         [DataType(DataType.Date)]
         [Column(TypeName = "Date")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Fecha de caducidad")]
         public DateTime? FechaCaducidad { get; set; }
 
