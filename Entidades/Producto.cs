@@ -17,9 +17,10 @@ namespace Entidades
         [Required]
         [RegularExpression(@"(\d+,?\d*)", ErrorMessage = "El número debe ser sólo dígitos con o sin decimales con coma")]
         public decimal Precio { get; set; }
-        
+
         [DataType(DataType.Date)]
         [Column(TypeName = "Date")]
+        [Display(Name = "Fecha de caducidad")]
         public DateTime? FechaCaducidad { get; set; }
 
         public override bool Equals(object obj)
