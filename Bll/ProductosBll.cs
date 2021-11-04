@@ -15,5 +15,25 @@ namespace Bll
         {
             return dao.ObtenerTodos();
         }
+
+        public static Producto BuscarPorId(long? id)
+        {
+            return dao.ObtenerPorId(id.Value);
+        }
+
+        public static void Guardar(Producto producto)
+        {
+            dao.Insertar(producto);
+        }
+
+        public static void Modificar(Producto producto)
+        {
+            dao.Modificar(producto);
+        }
+
+        public static void Borrar(long id)
+        {
+            dao.Borrar(id);
+        }
     }
 }

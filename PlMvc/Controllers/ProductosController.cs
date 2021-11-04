@@ -1,25 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Dal;
 using Entidades;
+using Bll;
 
 namespace PlMvc.Controllers
 {
     public class ProductosController : Controller
     {
-        private MF0968Context db = new MF0968Context();
-
         // GET: Productos
         public ActionResult Index()
         {
-            return View(db.Productos.ToList());
+            return View(ProductosBll.Consultar());
         }
 
         // GET: Productos/Details/5
@@ -29,7 +25,7 @@ namespace PlMvc.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = db.Productos.Find(id);
+            Producto producto = ProductosBll.BuscarPorId(id);
             if (producto == null)
             {
                 return HttpNotFound();
@@ -65,8 +61,7 @@ namespace PlMvc.Controllers
                     }
                 }
 
-                db.Productos.Add(producto);
-                db.SaveChanges();
+                ProductosBll.Guardar(producto);
                 return RedirectToAction("Index");
             }
 
@@ -80,7 +75,7 @@ namespace PlMvc.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = db.Productos.Find(id);
+            Producto producto = ProductosBll.BuscarPorId(id);
             if (producto == null)
             {
                 return HttpNotFound();
@@ -110,8 +105,7 @@ namespace PlMvc.Controllers
                     }
                 }
 
-                db.Entry(producto).State = EntityState.Modified;
-                db.SaveChanges();
+                ProductosBll.Modificar(producto);
                 return RedirectToAction("Index");
             }
             return View(producto);
@@ -124,7 +118,7 @@ namespace PlMvc.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = db.Productos.Find(id);
+            Producto producto = ProductosBll.BuscarPorId(id);
             if (producto == null)
             {
                 return HttpNotFound();
@@ -137,19 +131,8 @@ namespace PlMvc.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)
         {
-            Producto producto = db.Productos.Find(id);
-            db.Productos.Remove(producto);
-            db.SaveChanges();
+            ProductosBll.Borrar(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
