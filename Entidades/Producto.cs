@@ -16,11 +16,13 @@ namespace Entidades
         public string Nombre { get; set; }
         [Required]
         [RegularExpression(@"(\d+,?\d*)", ErrorMessage = "El número debe ser sólo dígitos con o sin decimales con coma")]
+        [Range(0.0,1000000.0)]
         public decimal Precio { get; set; }
 
         [DataType(DataType.Date)]
         [Column(TypeName = "Date")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Range(typeof(DateTime), "2021-11-01", "2021-11-30")]
         [Display(Name = "Fecha de caducidad")]
         public DateTime? FechaCaducidad { get; set; }
 
