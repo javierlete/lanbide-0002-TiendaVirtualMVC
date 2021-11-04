@@ -21,27 +21,33 @@
             <th>
                 @Html.DisplayNameFor(model => model.FechaCaducidad)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Foto)
+            </th>
             <th>Opciones</th>
         </tr>
     </thead>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Precio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaCaducidad)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.Id }, new { @class = "btn btn-primary" })
-            @Html.ActionLink("Detalles", "Details", new { id=item.Id }, new { @class = "btn btn-secondary" })
-            @Html.ActionLink("Borrar", "Delete", new { id=item.Id }, new { @class = "btn btn-danger" })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nombre)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Precio)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FechaCaducidad)
+    </td>
+    <td>
+        <img style="width: 100px" src="~/imgs/@Html.DisplayFor(modelItem => item.Foto)" />
+    </td>
+    <td>
+        @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-secondary" })
+        @Html.ActionLink("Borrar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+    </td>
+</tr>
 }
 
 </table>
