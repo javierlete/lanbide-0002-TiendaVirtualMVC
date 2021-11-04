@@ -11,7 +11,7 @@
     {
         <div class="col">
             <div class="card h-100">
-                <img src="..." class="card-img-top" alt="...">
+                <img src="~/imgs/@item.Foto" class="card-img-top" alt="@Html.DisplayFor(modelItem => item.Nombre)">
                 <div class="card-body">
                     <h5 class="card-title">@Html.DisplayFor(modelItem => item.Nombre)</h5>
                     <p class="card-text">@Html.DisplayNameFor(model => model.Precio): @Html.DisplayFor(modelItem => item.Precio)</p>

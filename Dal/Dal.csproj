@@ -70,6 +70,10 @@
     <Compile Include="Migrations\202111030914051_ProductoNombreRequeridoMigration.designer.cs">
       <DependentUpon>202111030914051_ProductoNombreRequeridoMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111040901566_ProductoFotoMigration.cs" />
+    <Compile Include="Migrations\202111040901566_ProductoFotoMigration.designer.cs">
+      <DependentUpon>202111040901566_ProductoFotoMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -92,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111030914051_ProductoNombreRequeridoMigration.resx">
       <DependentUpon>202111030914051_ProductoNombreRequeridoMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111040901566_ProductoFotoMigration.resx">
+      <DependentUpon>202111040901566_ProductoFotoMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

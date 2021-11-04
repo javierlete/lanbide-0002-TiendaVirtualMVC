@@ -22,8 +22,8 @@
             context.Database.ExecuteSqlCommand("TRUNCATE TABLE Productos");
 
             context.Productos.AddOrUpdate(p => p.Nombre,
-                new Entidades.Producto() { Nombre = "Prueba Seed", Precio = 1123.45m, FechaCaducidad = DateTime.Now },
-                new Entidades.Producto() { Nombre = "Prueba 2", Precio = 223.45m, FechaCaducidad = DateTime.Now }
+                new Entidades.Producto() { Nombre = "Prueba Seed", Precio = 1123.45m, FechaCaducidad = DateTime.Now, Foto = "uno.jpg" },
+                new Entidades.Producto() { Nombre = "Prueba 2", Precio = 223.45m, FechaCaducidad = DateTime.Now, Foto = "dos.jpg" }
                 );
         }
     }

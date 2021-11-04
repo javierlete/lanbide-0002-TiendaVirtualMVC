@@ -112,6 +112,8 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
+    <Content Include="imgs\dos.jpg" />
+    <Content Include="imgs\uno.jpg" />
     <Content Include="js\tiendavirtual.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />

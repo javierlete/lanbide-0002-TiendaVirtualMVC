@@ -26,6 +26,11 @@ namespace Entidades
         [Display(Name = "Fecha de caducidad")]
         public DateTime? FechaCaducidad { get; set; }
 
+        [MinLength(5)]
+        [MaxLength(50)]
+        [RegularExpression(@"^[a-z0-9_]+(\.jpg|\.png)$", ErrorMessage = "Sólo ficheros jpg o png y con letras, números o guiones bajos")]
+        public string Foto { get; set; }
+
         public override bool Equals(object obj)
         {
             return Equals(obj as Producto);
