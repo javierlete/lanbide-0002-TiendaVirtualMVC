@@ -7,7 +7,7 @@
 <h2>Nuevo</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Productos", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -35,6 +35,7 @@
         @Html.LabelFor(model => model.Foto, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Foto, new { htmlAttributes = new { @class = "form-control" } })
+            <input class="form-control" type="file" name="fichero"/>
             @Html.ValidationMessageFor(model => model.Foto, "", new { @class = "text-danger" })
         </div>
     </div>

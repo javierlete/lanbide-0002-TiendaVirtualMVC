@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -47,10 +48,23 @@ namespace PlMvc.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nombre,Precio,FechaCaducidad")] Producto producto)
+        public ActionResult Create([Bind(Include = "Id,Nombre,Precio,FechaCaducidad,Foto")] Producto producto)
         {
             if (ModelState.IsValid)
             {
+                if (Request.Files.Count > 0)
+                {
+                    var file = Request.Files[0];
+
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        //var fileName = Path.GetFileName(file.FileName);
+                        var fileName = producto.Foto;
+                        var path = Path.Combine(Server.MapPath("~/imgs/"), fileName);
+                        file.SaveAs(path);
+                    }
+                }
+
                 db.Productos.Add(producto);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -79,10 +93,23 @@ namespace PlMvc.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nombre,Precio,FechaCaducidad")] Producto producto)
+        public ActionResult Edit([Bind(Include = "Id,Nombre,Precio,FechaCaducidad,Foto")] Producto producto)
         {
             if (ModelState.IsValid)
             {
+                if (Request.Files.Count > 0)
+                {
+                    var file = Request.Files[0];
+
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        //var fileName = Path.GetFileName(file.FileName);
+                        var fileName = producto.Foto;
+                        var path = Path.Combine(Server.MapPath("~/imgs/"), fileName);
+                        file.SaveAs(path);
+                    }
+                }
+
                 db.Entry(producto).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
