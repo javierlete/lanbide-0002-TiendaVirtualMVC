@@ -33,31 +33,28 @@ namespace Entidades
 
         public override bool Equals(object obj)
         {
-            return Equals(obj as Producto);
-        }
-
-        public bool Equals(Producto other)
-        {
-            return other != null &&
-                   Id == other.Id &&
-                   Nombre == other.Nombre &&
-                   Precio == other.Precio &&
-                   FechaCaducidad == other.FechaCaducidad;
+            return obj is Producto producto &&
+                   Id == producto.Id &&
+                   Nombre == producto.Nombre &&
+                   Precio == producto.Precio &&
+                   FechaCaducidad == producto.FechaCaducidad &&
+                   Foto == producto.Foto;
         }
 
         public override int GetHashCode()
         {
-            int hashCode = -1261291979;
+            int hashCode = -1932052940;
             hashCode = hashCode * -1521134295 + Id.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Nombre);
             hashCode = hashCode * -1521134295 + Precio.GetHashCode();
             hashCode = hashCode * -1521134295 + FechaCaducidad.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Foto);
             return hashCode;
         }
 
         public override string ToString()
         {
-            return $"{Id}, {Nombre}, {Precio}, {FechaCaducidad}";
+            return $"{Id}, {Nombre}, {Precio}, {FechaCaducidad}, {Foto}";
         }
 
         public static bool operator ==(Producto left, Producto right)
