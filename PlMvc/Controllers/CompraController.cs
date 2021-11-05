@@ -13,5 +13,10 @@ namespace PlMvc.Controllers
         {
             return View(Bll.ProductosBll.BuscarPorId(id));
         }
+
+        public ActionResult AgregarCarrito(long id)
+        {
+            return View();
+        }
     }
 }

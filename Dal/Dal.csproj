@@ -54,8 +54,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DaoEntityProducto.cs" />
+    <Compile Include="DaoEntityUsuario.cs" />
     <Compile Include="FabricaDaos.cs" />
     <Compile Include="IDao.cs" />
+    <Compile Include="IDaoUsuario.cs" />
     <Compile Include="IDaoProducto.cs" />
     <Compile Include="MF0968Context.cs" />
     <Compile Include="Migrations\202110270806468_ProductoMigration.cs" />
@@ -73,6 +75,10 @@
     <Compile Include="Migrations\202111040901566_ProductoFotoMigration.cs" />
     <Compile Include="Migrations\202111040901566_ProductoFotoMigration.designer.cs">
       <DependentUpon>202111040901566_ProductoFotoMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111051037574_UsuarioMigration.cs" />
+    <Compile Include="Migrations\202111051037574_UsuarioMigration.designer.cs">
+      <DependentUpon>202111051037574_UsuarioMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -99,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111040901566_ProductoFotoMigration.resx">
       <DependentUpon>202111040901566_ProductoFotoMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111051037574_UsuarioMigration.resx">
+      <DependentUpon>202111051037574_UsuarioMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
