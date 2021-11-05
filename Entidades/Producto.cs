@@ -14,6 +14,7 @@ namespace Entidades
         public long? Id { get; set; }
         [Required]
         public string Nombre { get; set; }
+        [DisplayFormat(DataFormatString = "{0:c}")]
         [Required]
         [RegularExpression(@"(\d+,?\d*)", ErrorMessage = "El número debe ser sólo dígitos con o sin decimales con coma")]
         [Range(0.0,1000000.0)]

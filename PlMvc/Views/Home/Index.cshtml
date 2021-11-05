@@ -10,16 +10,17 @@
     @foreach (var item in Model)
     {
         <div class="col">
-            <div class="card h-100">
-                <img src="~/imgs/@item.Foto" class="card-img-top" alt="@Html.DisplayFor(modelItem => item.Nombre)">
-                <div class="card-body">
-                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Nombre)</h5>
-                    <p class="card-text">@Html.DisplayNameFor(model => model.Precio): @Html.DisplayFor(modelItem => item.Precio)</p>
+                <div class="card h-100">
+                    <img src="~/imgs/@item.Foto" class="card-img-top" alt="@Html.DisplayFor(modelItem => item.Nombre)">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Nombre)</h5>
+                        <p class="card-text">@Html.DisplayNameFor(model => model.Precio): @Html.DisplayFor(modelItem => item.Precio)</p>
+                        <a class="btn btn-primary stretched-link" href="@Url.Action("DetalleProducto", "Compra", new { id = item.Id })">Ver detalles del producto</a>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">@Html.DisplayNameFor(model => model.FechaCaducidad): @Html.DisplayFor(modelItem => item.FechaCaducidad)</small>
+                    </div>
                 </div>
-                <div class="card-footer">
-                    <small class="text-muted">@Html.DisplayNameFor(model => model.FechaCaducidad): @Html.DisplayFor(modelItem => item.FechaCaducidad)</small>
-                </div>
-            </div>
         </div>
     }
 </div>
