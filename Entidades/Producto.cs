@@ -33,12 +33,17 @@ namespace Entidades
 
         public override bool Equals(object obj)
         {
-            return obj is Producto producto &&
-                   Id == producto.Id &&
-                   Nombre == producto.Nombre &&
-                   Precio == producto.Precio &&
-                   FechaCaducidad == producto.FechaCaducidad &&
-                   Foto == producto.Foto;
+            return Equals(obj as Producto);
+        }
+
+        public bool Equals(Producto other)
+        {
+            return other != null &&
+                   Id == other.Id &&
+                   Nombre == other.Nombre &&
+                   Precio == other.Precio &&
+                   FechaCaducidad == other.FechaCaducidad &&
+                   Foto == other.Foto;
         }
 
         public override int GetHashCode()
