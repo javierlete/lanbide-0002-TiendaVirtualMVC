@@ -18,7 +18,7 @@ namespace PlWebMvcCore.Controllers
             //    new Producto() { Nombre = "Prueba 2", Precio = 223.45m, FechaCaducidad = DateTime.Now }
             //};
 
-            var productos = Bll.ProductosBll.Consultar();
+            var productos = Bll.PublicoBll.ObtenerProductos();
 
             return View(productos);
         }

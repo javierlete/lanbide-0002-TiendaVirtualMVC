@@ -11,7 +11,7 @@ namespace PlConsola
     {
         static void Main(string[] args)
         {
-            var productos = Bll.ProductosBll.Consultar();
+            var productos = Bll.ProductosBll.Consultar(new Usuario() { Rol = "ADMIN" });
 
             foreach (var producto in productos)
             {

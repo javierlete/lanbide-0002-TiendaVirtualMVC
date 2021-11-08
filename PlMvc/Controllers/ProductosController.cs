@@ -15,7 +15,7 @@ namespace PlMvc.Controllers
         // GET: Productos
         public ActionResult Index()
         {
-            return View(ProductosBll.Consultar());
+            return View(ProductosBll.Consultar(Session["usuario"] as Usuario));
         }
 
         // GET: Productos/Details/5
@@ -25,7 +25,7 @@ namespace PlMvc.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = ProductosBll.BuscarPorId(id);
+            Producto producto = ProductosBll.BuscarPorId(Session["usuario"] as Usuario, id);
             if (producto == null)
             {
                 return HttpNotFound();
@@ -61,7 +61,7 @@ namespace PlMvc.Controllers
                     }
                 }
 
-                ProductosBll.Guardar(producto);
+                ProductosBll.Guardar(Session["usuario"] as Usuario, producto);
                 return RedirectToAction("Index");
             }
 
@@ -75,7 +75,7 @@ namespace PlMvc.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = ProductosBll.BuscarPorId(id);
+            Producto producto = ProductosBll.BuscarPorId(Session["usuario"] as Usuario, id);
             if (producto == null)
             {
                 return HttpNotFound();
@@ -105,7 +105,7 @@ namespace PlMvc.Controllers
                     }
                 }
 
-                ProductosBll.Modificar(producto);
+                ProductosBll.Modificar(Session["usuario"] as Usuario, producto);
                 return RedirectToAction("Index");
             }
             return View(producto);
@@ -118,7 +118,7 @@ namespace PlMvc.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producto producto = ProductosBll.BuscarPorId(id);
+            Producto producto = ProductosBll.BuscarPorId(Session["usuario"] as Usuario, id);
             if (producto == null)
             {
                 return HttpNotFound();
@@ -131,7 +131,7 @@ namespace PlMvc.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)
         {
-            ProductosBll.Borrar(id);
+            ProductosBll.Borrar(Session["usuario"] as Usuario, id);
             return RedirectToAction("Index");
         }
     }

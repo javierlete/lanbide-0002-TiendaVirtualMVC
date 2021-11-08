@@ -1,9 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@{var usuario = Session["usuario"] as Entidades.Usuario;}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Tienda Virtual</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
@@ -15,15 +17,41 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="c
+                 ollapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         @Html.ActionLink("Principal", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Mantenimiento productos", "Index", "Productos", new { area = "" }, new { @class = "nav-link" })
-                    </li>
+                    @if (usuario != null && usuario.Rol == "ADMIN")
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Mantenimiento productos", "Index", "Productos", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                    }
                 </ul>
+
+
+                @if (usuario != null)
+                {
+                    <span class="navbar-text">
+                        @(usuario.Nombre)
+                    </span>
+
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            @Html.ActionLink("Logout", "Logout", "Home", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            @Html.ActionLink("Login", "Login", "Home", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                    </ul>
+                }
             </div>
         </div>
     </nav>

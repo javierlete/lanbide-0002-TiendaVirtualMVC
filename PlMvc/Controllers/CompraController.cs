@@ -11,7 +11,7 @@ namespace PlMvc.Controllers
         // GET: Compra
         public ActionResult DetalleProducto(long id)
         {
-            return View(Bll.ProductosBll.BuscarPorId(id));
+            return View(Bll.PublicoBll.BuscarProductoPorId(id));
         }
 
         public ActionResult AgregarCarrito(long id)

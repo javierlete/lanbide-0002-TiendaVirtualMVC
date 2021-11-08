@@ -26,7 +26,11 @@ namespace Dal
 
         public Usuario ObtenerPorEmail(string email)
         {
-            throw new NotImplementedException();
+            using(MF0968Context db = new MF0968Context())
+            {
+                return db.Usuarios.Where(u => u.Email == email).FirstOrDefault();
+                // return (from u in db.Usuarios where u.Email == email select u).FirstOrDefault();
+            }
         }
 
         public Usuario ObtenerPorId(long id)

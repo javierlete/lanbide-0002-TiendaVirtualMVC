@@ -12,7 +12,7 @@ namespace Bll
     public class ProductosBllTest
     {
         private static readonly Producto producto1 = new Producto() { Id = 1L, Nombre = "Monitor", Precio = 123.45m };
-        private static readonly Producto producto2 = new Producto() { Id = 2L, Nombre = "Patatas", Precio = 12.34m, FechaCaducidad = new DateTime(2000, 1, 2) };
+        private static readonly Producto producto2 = new Producto() { Id = 2L, Nombre = "Patatas", Precio = 12.34m, FechaCaducidad = new DateTime(2000, 1, 2), Foto = "dos.jpg" };
         private static readonly List<Producto> productos = new List<Producto>() { producto1, producto2 };
 
         private DbConnection ObtenerConexion()
@@ -72,7 +72,7 @@ namespace Bll
         [TestMethod]
         public void Consultar()
         {
-            List<Producto> productos = ProductosBll.Consultar() as List<Producto>;
+            List<Producto> productos = ProductosBll.Consultar(new Usuario() { Rol = "ADMIN" }) as List<Producto>;
 
             Assert.IsNotNull(productos);
 
@@ -80,6 +80,8 @@ namespace Bll
 
             Assert.AreEqual(producto1, productos[0]);
             Assert.AreEqual(producto2, productos[1]);
+
+            Assert.ThrowsException<UnauthorizedAccessException>(() => ProductosBll.Consultar(new Usuario() { Rol = "USER" }));
         }
     }
 }

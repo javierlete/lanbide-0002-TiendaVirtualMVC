@@ -12,7 +12,7 @@ namespace WebApiTiendaVirtual.Controllers
     {
         public IEnumerable<Producto> Get()
         {
-            return Bll.ProductosBll.Consultar();
+            return Bll.PublicoBll.ObtenerProductos();
         }
     }
 }

@@ -8,32 +8,45 @@ using System.Threading.Tasks;
 
 namespace Bll
 {
-    public class ProductosBll
+    public static class ProductosBll
     {
         private static readonly IDaoProducto dao = FabricaDaos.ObtenerDaoProducto(Tipos.Entity);
-        public static IEnumerable<Producto> Consultar()
+        public static IEnumerable<Producto> Consultar(Usuario usuario)
         {
+            Validar(usuario);
             return dao.ObtenerTodos();
         }
 
-        public static Producto BuscarPorId(long? id)
+
+        public static Producto BuscarPorId(Usuario usuario, long? id)
         {
+            Validar(usuario);
             return dao.ObtenerPorId(id.Value);
         }
 
-        public static void Guardar(Producto producto)
+        public static void Guardar(Usuario usuario, Producto producto)
         {
+            Validar(usuario);
             dao.Insertar(producto);
         }
 
-        public static void Modificar(Producto producto)
+        public static void Modificar(Usuario usuario, Producto producto)
         {
+            Validar(usuario);
             dao.Modificar(producto);
         }
 
-        public static void Borrar(long id)
+        public static void Borrar(Usuario usuario, long id)
         {
+            Validar(usuario);
             dao.Borrar(id);
+        }
+        private static void Validar(Usuario usuario)
+        {
+            if (usuario == null || usuario.Rol != "ADMIN")
+            {
+                throw new UnauthorizedAccessException("Sólo se admiten usuarios administradores: " + usuario);
+            }
         }
     }
 }
