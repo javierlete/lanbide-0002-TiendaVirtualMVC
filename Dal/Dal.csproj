@@ -53,10 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DaoEntityCarrito.cs" />
     <Compile Include="DaoEntityProducto.cs" />
     <Compile Include="DaoEntityUsuario.cs" />
     <Compile Include="FabricaDaos.cs" />
     <Compile Include="IDao.cs" />
+    <Compile Include="IDaoCarrito.cs" />
     <Compile Include="IDaoUsuario.cs" />
     <Compile Include="IDaoProducto.cs" />
     <Compile Include="MF0968Context.cs" />
@@ -79,6 +81,10 @@
     <Compile Include="Migrations\202111051037574_UsuarioMigration.cs" />
     <Compile Include="Migrations\202111051037574_UsuarioMigration.designer.cs">
       <DependentUpon>202111051037574_UsuarioMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111100921200_CarritosMigration.cs" />
+    <Compile Include="Migrations\202111100921200_CarritosMigration.designer.cs">
+      <DependentUpon>202111100921200_CarritosMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -108,6 +114,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111051037574_UsuarioMigration.resx">
       <DependentUpon>202111051037574_UsuarioMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111100921200_CarritosMigration.resx">
+      <DependentUpon>202111100921200_CarritosMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

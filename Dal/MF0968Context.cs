@@ -2,6 +2,7 @@
 using System;
 using System.Data.Entity;
 using System.Linq;
+using static Entidades.Carrito;
 
 namespace Dal
 {
@@ -22,6 +23,8 @@ namespace Dal
 
         public virtual DbSet<Producto> Productos { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
+        public virtual DbSet<Carrito> Carritos { get; set; }
+        public virtual DbSet<Detalle> Detalles { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

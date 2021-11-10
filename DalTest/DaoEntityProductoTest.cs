@@ -21,54 +21,54 @@ namespace Dal
                 ConnectionStrings["MF0968Context"].ConnectionString);
         }
 
-        [TestInitialize]
-        public void PreTest()
-        {
-            using (DbConnection con = ObtenerConexion())
-            {
-                con.Open();
+        //[TestInitialize]
+        //public void PreTest()
+        //{
+        //    using (DbConnection con = ObtenerConexion())
+        //    {
+        //        con.Open();
 
-                DbCommand com = con.CreateCommand();
+        //        DbCommand com = con.CreateCommand();
 
-                com.CommandText = "TRUNCATE TABLE Productos";
-                com.ExecuteNonQuery();
+        //        com.CommandText = "TRUNCATE TABLE Productos";
+        //        com.ExecuteNonQuery();
 
-                com.CommandText = "INSERT INTO Productos (Nombre, Precio, FechaCaducidad) VALUES (@Nombre, @Precio, @FechaCaducidad)";
+        //        com.CommandText = "INSERT INTO Productos (Nombre, Precio, FechaCaducidad) VALUES (@Nombre, @Precio, @FechaCaducidad)";
 
-                DbParameter parNombre = com.CreateParameter();
-                parNombre.ParameterName = "Nombre";
-                parNombre.DbType = System.Data.DbType.String;
-                com.Parameters.Add(parNombre);
+        //        DbParameter parNombre = com.CreateParameter();
+        //        parNombre.ParameterName = "Nombre";
+        //        parNombre.DbType = System.Data.DbType.String;
+        //        com.Parameters.Add(parNombre);
 
-                DbParameter parPrecio = com.CreateParameter();
-                parPrecio.ParameterName = "Precio";
-                parPrecio.DbType = System.Data.DbType.Decimal;
-                com.Parameters.Add(parPrecio);
+        //        DbParameter parPrecio = com.CreateParameter();
+        //        parPrecio.ParameterName = "Precio";
+        //        parPrecio.DbType = System.Data.DbType.Decimal;
+        //        com.Parameters.Add(parPrecio);
 
-                DbParameter parFechaCaducidad = com.CreateParameter();
-                parFechaCaducidad.ParameterName = "FechaCaducidad";
-                parFechaCaducidad.DbType = System.Data.DbType.Date;
-                com.Parameters.Add(parFechaCaducidad);
+        //        DbParameter parFechaCaducidad = com.CreateParameter();
+        //        parFechaCaducidad.ParameterName = "FechaCaducidad";
+        //        parFechaCaducidad.DbType = System.Data.DbType.Date;
+        //        com.Parameters.Add(parFechaCaducidad);
 
-                foreach (Producto producto in productos)
-                {
-                    parNombre.Value = producto.Nombre;
-                    parPrecio.Value = producto.Precio;
+        //        foreach (Producto producto in productos)
+        //        {
+        //            parNombre.Value = producto.Nombre;
+        //            parPrecio.Value = producto.Precio;
                     
-                    if (producto.FechaCaducidad.HasValue)
-                    {
-                        parFechaCaducidad.Value = producto.FechaCaducidad;
-                    }
-                    else
-                    {
-                        parFechaCaducidad.Value = DBNull.Value;
-                    }
+        //            if (producto.FechaCaducidad.HasValue)
+        //            {
+        //                parFechaCaducidad.Value = producto.FechaCaducidad;
+        //            }
+        //            else
+        //            {
+        //                parFechaCaducidad.Value = DBNull.Value;
+        //            }
 
-                    com.ExecuteNonQuery();
-                }
+        //            com.ExecuteNonQuery();
+        //        }
                 
-            }
-        }
+        //    }
+        //}
 
         //[TestCleanup]
         //public void PostTest()

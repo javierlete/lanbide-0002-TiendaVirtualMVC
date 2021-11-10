@@ -19,8 +19,8 @@
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
 
-            context.Database.ExecuteSqlCommand("TRUNCATE TABLE Productos");
-            context.Database.ExecuteSqlCommand("TRUNCATE TABLE Usuarios");
+            // context.Database.ExecuteSqlCommand("TRUNCATE TABLE Productos");
+            // context.Database.ExecuteSqlCommand("TRUNCATE TABLE Usuarios");
 
             context.Productos.AddOrUpdate(p => p.Nombre,
                 new Entidades.Producto() { Nombre = "Prueba Seed", Precio = 1123.45m, FechaCaducidad = DateTime.Now, Foto = "uno.jpg" },

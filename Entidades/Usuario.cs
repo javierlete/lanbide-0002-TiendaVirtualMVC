@@ -36,6 +36,8 @@ namespace Entidades
         [Required]
         public string Rol { get; set; } = "USER";
 
+        public Carrito Carrito { get; set; }
+
         public override bool Equals(object obj)
         {
             return Equals(obj as Usuario);
