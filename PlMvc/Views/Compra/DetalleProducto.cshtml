@@ -8,7 +8,7 @@
 
 <div>
     <h4>@Html.DisplayFor(model => model.Nombre)</h4>
-    
+
     <div class="card mb-3">
         <div class="row g-0">
             <div class="col-md-4">
@@ -18,14 +18,18 @@
                 <div class="card-body">
                     <h5 class="card-title">@Html.DisplayFor(model => model.Nombre)</h5>
                     <p class="card-text">@Html.DisplayFor(model => model.Precio)</p>
-                    <a class="btn btn-primary" href="@Url.Action("AgregarCarrito", "Compra", new { id = Model.Id })">Añadir al carrito</a>
+                    @using (Html.BeginForm("AgregarCarrito", "Compra", new { id = Model.Id }))
+                    {
+                        <p>Cantidad: <input type="number" step="1" min="1" name="cantidad" value="1" /></p>
+                        <p><button class="btn btn-primary">Añadir al carrito</button></p>
+                    }
                     <p class="card-text"><small class="text-muted">@Html.DisplayNameFor(model => model.FechaCaducidad): @Html.DisplayFor(model => model.FechaCaducidad)</small></p>
                 </div>
             </div>
         </div>
     </div>
-    
-    
+
+
 </div>
 <p>
     <a class="btn btn-secondary" href="@Url.Action("Index", "Home")">Volver a productos</a>

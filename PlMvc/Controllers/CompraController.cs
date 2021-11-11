@@ -15,11 +15,11 @@ namespace PlMvc.Controllers
             return View(Bll.PublicoBll.BuscarProductoPorId(id));
         }
 
-        public ActionResult AgregarCarrito(long id)
+        public ActionResult AgregarCarrito(long id, int cantidad)
         {
             Carrito carrito = Bll.CarritoBll.Obtener((Entidades.Usuario)Session["usuario"]);
 
-            Bll.CarritoBll.AgregarProducto(carrito.Id.Value, id);
+            Bll.CarritoBll.AgregarProducto(carrito.Id.Value, id, cantidad);
 
             return RedirectToAction("Carrito");
         }
