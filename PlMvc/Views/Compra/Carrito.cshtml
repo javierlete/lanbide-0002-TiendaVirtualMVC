@@ -19,6 +19,7 @@
                 <th class="text-end">Precio unidad</th>
                 <th class="text-end">Cantidad</th>
                 <th class="text-end">Precio total</th>
+                <th>Opciones</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +30,7 @@
                     <td class="text-end">@detalle.Producto.Precio.ToString("c")</td>
                     <td class="text-end">@detalle.Cantidad</td>
                     <td class="text-end">@detalle.Precio.ToString("c")</td>
+                    <td><a class="btn btn-danger" href="@Url.Action("BorrarProducto", new { id = detalle.Producto.Id })">Borrar</a></td>
                 </tr>
             }
         </tbody>
@@ -38,6 +40,7 @@
                 <td></td>
                 <td></td>
                 <th class="text-end">@Model.Precio.ToString("c")</th>
+                <td></td>
             </tr>
         </tfoot>
     </table>

@@ -24,6 +24,14 @@ namespace PlMvc.Controllers
             return RedirectToAction("Carrito");
         }
 
+        public ActionResult BorrarProducto(long id)
+        {
+            Carrito carrito = Bll.CarritoBll.Obtener((Entidades.Usuario)Session["usuario"]);
+
+            Bll.CarritoBll.BorrarDetalle(carrito.Id.Value, id);
+
+            return RedirectToAction("Carrito");
+        }
         public ActionResult Carrito()
         {
             Carrito carrito = Bll.CarritoBll.Obtener((Entidades.Usuario)Session["usuario"]);
