@@ -18,9 +18,13 @@ namespace Dal
             }
         }
 
-        public void BorrarDetalle(long id)
+        public void BorrarDetalle(long carritoId, long productoId)
         {
-            throw new NotImplementedException();
+            using (MF0968Context db = new MF0968Context())
+            {
+                db.Detalles.Remove(db.Detalles.Find(carritoId, productoId));
+                db.SaveChanges();
+            }
         }
 
         public Carrito Insertar(Carrito carrito)

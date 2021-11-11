@@ -12,6 +12,6 @@ namespace Dal
     {
         void InsertarDetalle(Detalle detalle);
         void ModificarDetalle(Detalle detalle);
-        void BorrarDetalle(long id);
+        void BorrarDetalle(long carritoId, long productoId);
     }
 }
