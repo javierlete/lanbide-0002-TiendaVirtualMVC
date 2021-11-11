@@ -28,6 +28,9 @@ namespace Entidades
             [ForeignKey("ProductoId")]
             public Producto Producto { get; set; }
             public int Cantidad { get; set; }
+            public decimal Precio => Producto.Precio * Cantidad;
         }
+
+        public decimal Precio => Detalles.Sum(d => d.Precio);
     }
 }
