@@ -11,9 +11,9 @@ namespace Dal
     public class DaoEntityProductoTest
     {
         private static readonly IDaoProducto dao = FabricaDaos.ObtenerDaoProducto(Tipos.Entity);
-        private static readonly Producto producto1 = new Producto() { Id = 1L, Nombre = "Monitor", Precio = 123.45m };
-        private static readonly Producto producto2 = new Producto() { Id = 2L, Nombre = "Patatas", Precio = 12.34m, FechaCaducidad = new DateTime(2000, 1, 2) };
-        private static readonly List<Producto> productos = new List<Producto>() { producto1, producto2 };
+        // private static readonly Producto producto1 = new Producto() { Id = 1L, Nombre = "Monitor", Precio = 123.45m };
+        // private static readonly Producto producto2 = new Producto() { Id = 2L, Nombre = "Patatas", Precio = 12.34m, FechaCaducidad = new DateTime(2000, 1, 2) };
+        // private static readonly List<Producto> productos = new List<Producto>() { producto1, producto2 };
 
         private DbConnection ObtenerConexion()
         {
@@ -54,7 +54,7 @@ namespace Dal
         //        {
         //            parNombre.Value = producto.Nombre;
         //            parPrecio.Value = producto.Precio;
-                    
+
         //            if (producto.FechaCaducidad.HasValue)
         //            {
         //                parFechaCaducidad.Value = producto.FechaCaducidad;
@@ -66,7 +66,7 @@ namespace Dal
 
         //            com.ExecuteNonQuery();
         //        }
-                
+
         //    }
         //}
 
@@ -91,30 +91,62 @@ namespace Dal
 
             Assert.IsNotNull(productos);
 
-            Assert.AreEqual(2, productos.Count);
+            using (DbConnection con = ObtenerConexion())
+            {
+                con.Open();
 
-            Assert.AreEqual(producto1, productos[0]);
-            Assert.AreEqual(producto2, productos[1]);
+                DbCommand com = con.CreateCommand();
+                com.CommandText = "SELECT COUNT(*) FROM Productos";
+
+                int cuenta = (int)com.ExecuteScalar();
+
+                Assert.AreEqual(cuenta, productos.Count);
+
+                com.CommandText = "SELECT * FROM Productos";
+
+                DbDataReader dr = com.ExecuteReader();
+
+                int i = 0;
+
+                while (dr.Read())
+                {
+                    Assert.AreEqual(dr["Id"], productos[i].Id);
+                    Assert.AreEqual(dr["Nombre"], productos[i].Nombre);
+                    Assert.AreEqual(dr["Precio"], productos[i].Precio);
+                    //Assert.AreEqual(dr["FechaCaducidad"], productos[i].FechaCaducidad);
+
+                    i++;
+                }
+            }
         }
 
         [TestMethod]
         public void ObtenerPorId()
         {
-            Producto producto = dao.ObtenerPorId(1L);
+            using (DbConnection con = ObtenerConexion())
+            {
+                con.Open();
 
-            Assert.IsNotNull(producto);
+                DbCommand com = con.CreateCommand();
+                com.CommandText = "SELECT TOP 1 * FROM Productos ORDER BY Id DESC";
 
-            Assert.AreEqual(producto1, producto);
+                DbDataReader dr = com.ExecuteReader();
 
-            producto = dao.ObtenerPorId(10L);
+                dr.Read();
 
-            Assert.IsNull(producto);
+                Producto producto = dao.ObtenerPorId((long)dr["Id"]);
 
-            producto = dao.ObtenerPorId(2L);
+                Assert.IsNotNull(producto);
 
-            Assert.IsNotNull(producto);
+                Assert.AreEqual(dr["Id"], producto.Id);
+                Assert.AreEqual(dr["Nombre"], producto.Nombre);
+                Assert.AreEqual(dr["Precio"], producto.Precio);
+                //Assert.AreEqual(dr["FechaCaducidad"], producto.FechaCaducidad);
 
-            Assert.AreEqual(producto2, producto);
+                producto = dao.ObtenerPorId((long)dr["Id"] + 1);
+
+                Assert.IsNull(producto);
+            }
         }
 
         [TestMethod]
@@ -123,14 +155,12 @@ namespace Dal
             Producto nuevo = new Producto() { Nombre = "Nuevo", Precio = 43.21m };
             dao.Insertar(nuevo);
 
-            Assert.AreEqual(3L, nuevo.Id);
-
             using (DbConnection con = ObtenerConexion())
             {
                 con.Open();
 
                 DbCommand com = con.CreateCommand();
-                com.CommandText = "SELECT * FROM Productos WHERE Id = 3";
+                com.CommandText = "SELECT * FROM Productos WHERE Id = " + nuevo.Id;
 
                 DbDataReader dr = com.ExecuteReader();
 
@@ -144,15 +174,19 @@ namespace Dal
         [TestMethod]
         public void Modificar()
         {
-            Producto modificado = new Producto() { Id = 2L, Nombre = "Modificar", Precio = 43.21m };
-            dao.Modificar(modificado);
-
             using (DbConnection con = ObtenerConexion())
             {
                 con.Open();
 
                 DbCommand com = con.CreateCommand();
-                com.CommandText = "SELECT * FROM Productos WHERE Id = 2";
+                com.CommandText = "SELECT MAX(Id) FROM Productos";
+
+                long id = (long)com.ExecuteScalar();
+
+                Producto modificado = new Producto() { Id = id, Nombre = "Modificar", Precio = 43.21m };
+                dao.Modificar(modificado);
+
+                com.CommandText = "SELECT * FROM Productos WHERE Id = " + id;
 
                 DbDataReader dr = com.ExecuteReader();
 
@@ -166,14 +200,18 @@ namespace Dal
         [TestMethod]
         public void Borrar()
         {
-            dao.Borrar(1L);
-
             using (DbConnection con = ObtenerConexion())
-            {
+            { 
                 con.Open();
 
                 DbCommand com = con.CreateCommand();
-                com.CommandText = "SELECT * FROM Productos WHERE Id = 1";
+                com.CommandText = "SELECT MAX(Id) FROM Productos";
+
+                long id = (long)com.ExecuteScalar();
+
+                dao.Borrar(id);
+
+                com.CommandText = "SELECT * FROM Productos WHERE Id = " + id;
 
                 DbDataReader dr = com.ExecuteReader();
 
