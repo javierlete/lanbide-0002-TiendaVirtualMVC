@@ -10,6 +10,7 @@ namespace Dal
 {
     public interface IDaoCarrito: IDao<Carrito>
     {
+        Detalle ObtenerDetalle(long carritoId, long productoId);
         void InsertarDetalle(Detalle detalle);
         void ModificarDetalle(Detalle detalle);
         void BorrarDetalle(long carritoId, long productoId);

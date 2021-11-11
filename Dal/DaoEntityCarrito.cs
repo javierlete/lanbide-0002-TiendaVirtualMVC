@@ -55,7 +55,19 @@ namespace Dal
 
         public void ModificarDetalle(Carrito.Detalle detalle)
         {
-            throw new NotImplementedException();
+            using (MF0968Context db = new MF0968Context())
+            {
+                db.Entry(detalle).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+        }
+
+        public Carrito.Detalle ObtenerDetalle(long carritoId, long productoId)
+        {
+            using (MF0968Context db = new MF0968Context())
+            {
+                return db.Detalles.Find(carritoId, productoId);
+            }
         }
 
         public Carrito ObtenerPorId(long id)
