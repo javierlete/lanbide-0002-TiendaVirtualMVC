@@ -12,31 +12,73 @@ namespace Bll
     public static class CarritoBll
     {
         private readonly static IDaoCarrito dao = FabricaDaos.ObtenerDaoCarrito(Tipos.Entity);
-        public static Carrito Alta(Usuario usuario)
+
+        public static Carrito Obtener(Usuario usuario)
         {
+            Validar(usuario);
+            Carrito carrito = dao.ObtenerPorId(usuario.Id.Value);
+
+            if(carrito == null)
+            {
+                carrito = Alta(usuario);
+            }
+
+            return carrito;
+        }
+        private static Carrito Alta(Usuario usuario)
+        {
+            Validar(usuario);
             return dao.Insertar(new Carrito() { Usuario = usuario });
         }
 
         public static void Baja(Usuario usuario)
         {
+            Validar(usuario);
             dao.Borrar(usuario.Id.Value);
         }
 
-        public static void InsertarProducto(long carritoId, long productoId, int cantidad = 1)
+        public static void AgregarProducto(long usuarioId, long productoId, int cantidad = 1)
         {
-            Detalle detalle = new Detalle() { CarritoId = carritoId, ProductoId = productoId, Cantidad = cantidad };
+            Detalle detalle = dao.ObtenerDetalle(usuarioId, productoId);
+
+            if(detalle != null)
+            {
+                detalle.Cantidad += cantidad;
+                ModificarProducto(detalle);
+            }
+            else
+            {
+                InsertarProducto(usuarioId, productoId, cantidad);
+            }
+        }
+        private static void InsertarProducto(long usuarioId, long productoId, int cantidad = 1)
+        {
+            Detalle detalle = new Detalle() { CarritoId = usuarioId, ProductoId = productoId, Cantidad = cantidad };
             dao.InsertarDetalle(detalle);
         }
 
-        public static void ModificarProducto(long carritoId, long productoId, int cantidad = 1)
+        public static void ModificarProducto(Detalle detalle)
         {
-            Detalle detalle = new Detalle() { CarritoId = carritoId, ProductoId = productoId, Cantidad = cantidad };
             dao.ModificarDetalle(detalle);
         }
 
-        public static void BorrarDetalle(long carritoId, long productoId)
+        public static void ModificarProducto(long usuarioId, long productoId, int cantidad = 1)
         {
-            dao.BorrarDetalle(carritoId, productoId);
+            Detalle detalle = new Detalle() { CarritoId = usuarioId, ProductoId = productoId, Cantidad = cantidad };
+            dao.ModificarDetalle(detalle);
+        }
+
+        public static void BorrarDetalle(long usuarioId, long productoId)
+        {
+            dao.BorrarDetalle(usuarioId, productoId);
+        }
+
+        private static void Validar(Usuario usuario)
+        {
+            if (usuario == null)
+            {
+                throw new UnauthorizedAccessException("Debes ser un usuario registrado para poder usar el carrito");
+            }
         }
     }
 }
